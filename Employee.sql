@@ -8,7 +8,6 @@ salary int
 );
 
 create table productiondetails(
-empname varchar(25),
 empid int,
 production_achieved int,
 target int,
@@ -21,10 +20,11 @@ insert into employeedetails(empid, empname, jobdescription, salary) values
 (3, 'Arun', 'HR', 50000),
 (4, 'Karthick', 'Manager', 60000);
 
-insert into productiondetails(empname, empid, production_achieved, target) values
-('Arun', 3, 2000, 2000),
-('Ram', 2, 1800, 2000),
-('Karthick', 4, 1900, 2000);
+insert into productiondetails(empid, production_achieved, target) values
+(3, 2000, 2000),
+(2, 1800, 2000),
+(4, 1900, 2000),
+(1, null, 2000);
 
 select * from employeedetails where empname = 'Arun';
 
@@ -45,5 +45,9 @@ from employeedetails
 group by jobdescription;
 
 select employeedetails.empname, productiondetails.production_achieved, productiondetails.target
-from employeedetails
-inner join productiondetails ON employeedetails.empid = productiondetails.empid;
+from productiondetails
+inner join employeedetails ON employeedetails.empid = productiondetails.empid;
+-- order by empname desc;
+
+-- drop table employeedetails;
+-- drop table productiondetails;
