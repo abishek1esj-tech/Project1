@@ -1,16 +1,17 @@
--- show databases;
-use abidb;
+create database Employee;
+use Employee;
+
 create table employeedetails(
-empid int primary key,
-empname varchar(25),
-jobdescription varchar(30),
+empid int primary key not null,
+empname varchar (25) not null,
+jobdescription varchar(30) not null,
 salary int
 );
 
 create table productiondetails(
-empid int,
+empid int not null,
 production_achieved int,
-target int,
+target int not null,
 foreign key (empid) references employeedetails (empId)
 );
 
@@ -48,6 +49,3 @@ select employeedetails.empname, productiondetails.production_achieved, productio
 from productiondetails
 inner join employeedetails ON employeedetails.empid = productiondetails.empid;
 -- order by empname desc;
-
--- drop table employeedetails;
--- drop table productiondetails;
